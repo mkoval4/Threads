@@ -44,9 +44,12 @@ void* run(void *j)
 		
 		if (required_memory <= memory){
 
-			//run the job
+			if (mode == RR){
+				execute_job_enqueue(job);
+			}else{
+				//run the job
 			execute_job(job);
-			
+			}
 		} 
 
 		/**********************************************************************
@@ -122,6 +125,10 @@ void simulate(int memory_value, int mode_value, int time_quantum_value,
 		pthread_join(threads[i], NULL);
 }
 
+void execute_job_enqueue(job_t *job){
+
+}
+
 void execute_job(job_t *job) {
 	
 
@@ -143,11 +150,11 @@ void execute_job(job_t *job) {
 	* inform user that the job finished executing
 	******************************************************************/
 	print_completed(fp, number);
+	
 	if (mode != SJF){
 		free(job);
 	}
 	
-
 	/******************************************************************
 	* deallocate memory
 	******************************************************************/

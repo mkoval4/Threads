@@ -58,7 +58,7 @@ job_t *get_next_job(int mode, d_linked_list_t* jobs) {
 
 	//unlock critical section
 	pthread_mutex_unlock(&mutex2);
-	
+
 	return j;
 }
 
@@ -114,6 +114,7 @@ job_t* shortestFirst(d_linked_list_t* jobsList){
 job_t* roundRobin(d_linked_list_t* jobsList){
 	job_t* robinJob;
 
+	robinJob = dequeue(jobsList);
 
 	return (robinJob);
 }
